@@ -1,0 +1,43 @@
+/* ! Global Style */
+.fw-300 {
+  font-weight: 300;
+}
+
+/* ! Header */
+header,
+header nav {
+  min-height: 4rem;
+}
+
+/* ! Sidebar CSS */
+
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+  z-index: 1000;
+  height: calc(100vh - 4rem);
+  background-color: #f7f7f7;
+  border-right: 1px solid #ececec;
+}
+
+.sidebar .sidebar__nav > li > a {
+  display: block;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.sidebar .sidebar__nav > li > a:hover,
+.sidebar .sidebar__nav > li > a.active {
+  color: #4285f4;
+}
+
+/* ! React Datepicker */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.btn {
+  text-transform: none;
+}
