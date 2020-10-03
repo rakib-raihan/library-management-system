@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import AddNewAdmin from "./layout/admin/AddNewAdmin";
 import AddNewBook from "./layout/admin/AddNewBook";
 import AddNewCustomer from "./layout/admin/AddNewCustomer";
+import AllAdmin from "./layout/admin/AllAdmin";
 import AllBook from "./layout/admin/AllBook";
 import AllCustomer from "./layout/admin/AllCustomer";
 import Dashboard from "./layout/admin/Dashboard";
@@ -35,6 +37,8 @@ export class Content extends Component {
               path="/dashboard/add-new-customer"
               component={AddNewCustomer}
             />
+            <Route path="/dashboard/all-admin" component={AllAdmin} />
+            <Route path="/dashboard/add-new-admin" component={AddNewAdmin} />
             <Route path="/dashboard/profile" component={Profile} />
             <Redirect to="/dashboard/overview" />
           </Switch>

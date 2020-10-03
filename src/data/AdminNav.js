@@ -60,5 +60,20 @@ export default () => {
       to: "/dashboard/add-new-customer",
       component: "AddNewCustomer",
     },
+    {
+      header: "Admin/Staff",
+    },
+    {
+      title: "All Admin",
+      icon: "bx bx-user",
+      to: "/dashboard/all-admin",
+      component: "AllAdmin",
+    },
+    {
+      title: "Add New Admin",
+      icon: "bx bx-user-plus",
+      to: "/dashboard/add-new-admin",
+      component: "AddNewAdmin",
+    },
   ];
 };

@@ -1,0 +1,186 @@
+const customer = [
+  {
+    id: 1,
+    first_name: "Pierrette",
+    last_name: "Dri",
+    email: "pdri0@usgs.gov",
+  },
+  {
+    id: 2,
+    first_name: "Ives",
+    last_name: "Markwick",
+    email: "imarkwick1@flavors.me",
+  },
+  {
+    id: 3,
+    first_name: "Phyllis",
+    last_name: "Shafier",
+    email: "pshafier2@independent.co.uk",
+  },
+  {
+    id: 4,
+    first_name: "Antoni",
+    last_name: "Nunson",
+    email: "anunson3@1688.com",
+  },
+  {
+    id: 5,
+    first_name: "Drusi",
+    last_name: "Wyper",
+    email: "dwyper4@fastcompany.com",
+  },
+  {
+    id: 6,
+    first_name: "Hannah",
+    last_name: "Rustedge",
+    email: "hrustedge5@dell.com",
+  },
+  {
+    id: 7,
+    first_name: "Stacy",
+    last_name: "Filippi",
+    email: "sfilippi6@google.fr",
+  },
+  {
+    id: 8,
+    first_name: "Fraser",
+    last_name: "Thursfield",
+    email: "fthursfield7@ameblo.jp",
+  },
+  {
+    id: 9,
+    first_name: "Arty",
+    last_name: "Ioselev",
+    email: "aioselev8@taobao.com",
+  },
+  {
+    id: 10,
+    first_name: "Keir",
+    last_name: "McLevie",
+    email: "kmclevie9@comsenz.com",
+  },
+  {
+    id: 11,
+    first_name: "Daria",
+    last_name: "Lunn",
+    email: "dlunna@clickbank.net",
+  },
+  {
+    id: 12,
+    first_name: "Tammara",
+    last_name: "O'Hegertie",
+    email: "tohegertieb@1688.com",
+  },
+  {
+    id: 13,
+    first_name: "Karina",
+    last_name: "Urrey",
+    email: "kurreyc@posterous.com",
+  },
+  {
+    id: 14,
+    first_name: "Flss",
+    last_name: "Tink",
+    email: "ftinkd@cornell.edu",
+  },
+  {
+    id: 15,
+    first_name: "Waylon",
+    last_name: "Kubica",
+    email: "wkubicae@hubpages.com",
+  },
+  {
+    id: 16,
+    first_name: "Cecelia",
+    last_name: "Deners",
+    email: "cdenersf@ustream.tv",
+  },
+  {
+    id: 17,
+    first_name: "Gerek",
+    last_name: "Mullin",
+    email: "gmulling@technorati.com",
+  },
+  {
+    id: 18,
+    first_name: "Britte",
+    last_name: "Elbourn",
+    email: "belbournh@samsung.com",
+  },
+  {
+    id: 19,
+    first_name: "Evin",
+    last_name: "Ivie",
+    email: "eiviei@sogou.com",
+  },
+  {
+    id: 20,
+    first_name: "Findley",
+    last_name: "Gillmore",
+    email: "fgillmorej@ftc.gov",
+  },
+  {
+    id: 21,
+    first_name: "Peggie",
+    last_name: "Whitland",
+    email: "pwhitlandk@constantcontact.com",
+  },
+  {
+    id: 22,
+    first_name: "Issiah",
+    last_name: "Neasham",
+    email: "ineashaml@nytimes.com",
+  },
+  {
+    id: 23,
+    first_name: "Drucie",
+    last_name: "Abrahim",
+    email: "dabrahimm@opensource.org",
+  },
+  {
+    id: 24,
+    first_name: "Dwayne",
+    last_name: "Bullough",
+    email: "dbulloughn@wp.com",
+  },
+  {
+    id: 25,
+    first_name: "Alyson",
+    last_name: "Jellyman",
+    email: "ajellymano@unicef.org",
+  },
+  {
+    id: 26,
+    first_name: "Filbert",
+    last_name: "Mabee",
+    email: "fmabeep@samsung.com",
+  },
+  {
+    id: 27,
+    first_name: "Angelle",
+    last_name: "Venn",
+    email: "avennq@telegraph.co.uk",
+  },
+  {
+    id: 28,
+    first_name: "Doralynne",
+    last_name: "Leyman",
+    email: "dleymanr@theguardian.com",
+  },
+  {
+    id: 29,
+    first_name: "Bartel",
+    last_name: "Dubose",
+    email: "bduboses@netscape.com",
+  },
+  {
+    id: 30,
+    first_name: "Laney",
+    last_name: "Knapman",
+    email: "lknapmant@theguardian.com",
+  },
+];
+
+export function getCustomer() {
+  return customer;
+}

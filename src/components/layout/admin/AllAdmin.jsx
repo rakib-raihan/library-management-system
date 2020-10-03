@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import { getCustomer } from "../../../data/Customer";
+import { getAdmin } from "../../../data/Admin";
 import CreateTable from "../../../module/CreateTable";
 import PageTitle from "../../../module/PageTitle";
 
-class AllCustomer extends Component {
+class AllAdmin extends Component {
   columns = [
     { path: "first_name", label: "First Name" },
     { path: "last_name", label: "Last Name" },
     { path: "email", label: "Email" },
+    { path: "designation", label: "Designation" },
     {
       key: "delete",
-      content: (customer) => (
+      content: (admin) => (
         <button
           className="btn btn-danger"
-          onClick={() => this.handleDelete(customer)}
+          onClick={() => this.handleDelete(admin)}
         >
           Delete
         </button>
@@ -21,10 +22,10 @@ class AllCustomer extends Component {
     },
     {
       key: "edit",
-      content: (customer) => (
+      content: (admin) => (
         <button
           className="btn btn-primary"
-          onClick={() => this.handleEdit(customer)}
+          onClick={() => this.handleEdit(admin)}
         >
           Edit
         </button>
@@ -33,17 +34,17 @@ class AllCustomer extends Component {
   ];
 
   state = {
-    data: getCustomer(),
+    data: getAdmin(),
     pageSize: 10,
     currentPage: 1,
   };
 
-  handleDelete = (customer) => {
-    console.log("Delete:", customer);
+  handleDelete = (admin) => {
+    console.log("Delete:", admin);
   };
 
-  handleEdit = (customer) => {
-    console.log("Edit:", customer);
+  handleEdit = (admin) => {
+    console.log("Edit:", admin);
   };
 
   handlePageChange = (page) => {
@@ -56,7 +57,7 @@ class AllCustomer extends Component {
     const { data, pageSize, currentPage } = this.state;
     return (
       <React.Fragment>
-        {PageTitle("All Customer")}
+        {PageTitle("All Admin")}
         <div className="page-content">
           <div className="row">
             <div className="col-md-12">
@@ -77,4 +78,4 @@ class AllCustomer extends Component {
   }
 }
 
-export default AllCustomer;
+export default AllAdmin;
