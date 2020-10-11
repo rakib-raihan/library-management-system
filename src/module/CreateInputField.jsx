@@ -11,7 +11,12 @@ const createInputField = (data) => {
     onChange,
     disabled,
   } = data;
-  if (type === "text" || type === "number")
+  if (
+    type === "text" ||
+    type === "number" ||
+    type === "email" ||
+    type === "password"
+  )
     return (
       <React.Fragment>
         <div className="form-row">
