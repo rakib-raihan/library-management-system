@@ -3,9 +3,13 @@ import React from "react";
 const CreateSubmitButton = (data) => {
   const { title, onClick } = data;
   return (
-    <button type="submit" className="btn btn-primary" onClick={onClick}>
-      {title}
-    </button>
+    <div className="form-row">
+      <div className="col form-group">
+        <button type="submit" className="btn btn-primary" onClick={onClick}>
+          {title}
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -10,6 +10,8 @@ const createInputField = (data) => {
     value,
     onChange,
     disabled,
+    onClick,
+    onSubmit,
   } = data;
   if (
     type === "text" ||
@@ -31,6 +33,7 @@ const createInputField = (data) => {
               className="form-control"
               onChange={onChange}
               disabled={disabled}
+              onClick={onClick}
             />
           </div>
         </div>

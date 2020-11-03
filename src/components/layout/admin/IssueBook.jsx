@@ -2,20 +2,27 @@ import React, { Component } from "react";
 import PageTitle from "../../../module/PageTitle";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import setDate from "../../../module/setDate";
 import CreateInputField from "../../../module/CreateInputField";
 import CreateSubmitButton from "../../../module/CreateSubmitButton";
+import SearchBook from "../../../utils/SearchBook";
+import SearchCustomer from "../../../utils/SearchCustomer";
+import setDate from "../../../utils/setDate";
 
 class IssueBook extends Component {
   state = {
     data: {
-      minDate: setDate(3),
+      minDate: setDate(5),
       returnDate: new Date(),
       bookID: "",
       customerID: "",
       regDate: new Date(),
       price: 0,
       note: "",
+    },
+    selected: "book",
+    info: {
+      bookTitle: "",
+      customerName: "",
     },
   };
 
@@ -29,6 +36,11 @@ class IssueBook extends Component {
         regDate: new Date(),
         price: 0,
         note: "",
+      },
+      selected: "book",
+      info: {
+        bookTitle: "",
+        customerName: "",
       },
     });
   };
@@ -51,6 +63,44 @@ class IssueBook extends Component {
     this.resetFormData();
   };
 
+  handleSelectMode = (selected) => {
+    this.setState({
+      selected,
+    });
+  };
+
+  handleSelectBook = (book) => {
+    const data = this.state.data;
+    data.bookID = book.id;
+    this.setState({
+      data,
+    });
+
+    const info = this.state.info;
+    info.bookTitle = book.title;
+    this.setState({
+      info,
+    });
+  };
+
+  handleSelectCustomer = (customer) => {
+    const data = this.state.data;
+    data.customerID = customer.id;
+    this.setState({
+      data,
+    });
+
+    const info = this.state.info;
+    info.customerName = customer.first_name;
+    this.setState({
+      info,
+    });
+  };
+
+  dChange = (e) => {
+    console.log(e);
+  };
+
   render() {
     const {
       bookID,
@@ -60,6 +110,7 @@ class IssueBook extends Component {
       returnDate,
       minDate,
     } = this.state.data;
+    const { bookTitle, customerName } = this.state.info;
     return (
       <React.Fragment>
         {PageTitle("Issue Book")}
@@ -71,17 +122,30 @@ class IssueBook extends Component {
                   label="Book ID"
                   type="text"
                   id="bookID"
-                  autoFocus
+                  autoFocus={true}
                   value={bookID}
                   onChange={this.handleInputChange}
+                  onClick={() => this.handleSelectMode("book")}
                 />
+                {bookTitle ? (
+                  <p className="font-italic">
+                    Book Title: <span className="text-info">{bookTitle}</span>
+                  </p>
+                ) : null}
                 <CreateInputField
                   label="Customer ID"
                   type="text"
                   id="customerID"
                   value={customerID}
                   onChange={this.handleInputChange}
+                  onClick={() => this.handleSelectMode("customer")}
                 />
+                {customerName ? (
+                  <p className="font-italic">
+                    Customer Name:{" "}
+                    <span className="text-info">{customerName}</span>
+                  </p>
+                ) : null}
                 <div className="form-row">
                   <div className="col form-group">
                     <label htmlFor="returnDate">Return Date</label>
@@ -116,7 +180,15 @@ class IssueBook extends Component {
                 />
               </form>
             </div>
-            <div className="col-6"></div>
+            <div className="col-6">
+              {this.state.selected === "book" ? (
+                <SearchBook handleSelectBook={this.handleSelectBook} />
+              ) : (
+                <SearchCustomer
+                  handleSelectCustomer={this.handleSelectCustomer}
+                />
+              )}
+            </div>
           </div>
         </div>
       </React.Fragment>

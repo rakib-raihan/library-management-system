@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { paginate } from "../utils/paginate";
+import Pagination from "../utils/Pagination";
 import TableBody from "./layout/TableBody";
 import TableHeader from "./layout/TableHeader";
-import Pagination from "./Pagination";
 
 class CreateTable extends Component {
   render() {
