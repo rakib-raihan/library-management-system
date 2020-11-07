@@ -11,6 +11,8 @@ import "boxicons/css/boxicons.min.css";
 import "./App.css";
 import "bootstrap/dist/js/bootstrap.js";
 
+// Redux
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
