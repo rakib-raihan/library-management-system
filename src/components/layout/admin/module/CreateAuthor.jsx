@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import CreateInputField from "../../../../module/CreateInputField";
 import CreateSubmitButton from "../../../../module/CreateSubmitButton";
 import SubTitle from "../../../../module/SubTitle";
+import { createAuthor } from "../../../../services/authorServices";
+import { toast } from "react-toastify";
 
 class CreateAuthor extends Component {
   state = {
@@ -17,10 +19,13 @@ class CreateAuthor extends Component {
     this.setState({ data });
   };
 
-  handleFormSubmit = (e) => {
+  handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.data);
-    this.resetFormData();
+    const { data } = await createAuthor(this.state.data);
+    if (data) {
+      toast.success(`Author "${data.name}" created successfully!`);
+      this.resetFormData();
+    }
   };
 
   resetFormData = () => {

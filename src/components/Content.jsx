@@ -8,6 +8,7 @@ import AllBook from "./layout/admin/AllBook";
 import AllCustomer from "./layout/admin/AllCustomer";
 import Dashboard from "./layout/admin/Dashboard";
 import IssueBook from "./layout/admin/IssueBook";
+import IssueReturn from "./layout/admin/IssueReturn";
 import ManageAuthor from "./layout/admin/ManageAuthor";
 import ManageCategory from "./layout/admin/ManageCategory";
 import ManagePublisher from "./layout/admin/ManagePublisher";
@@ -21,6 +22,7 @@ export class Content extends Component {
           <Switch>
             <Route path="/dashboard/overview" component={Dashboard} />
             <Route path="/dashboard/issue-book" component={IssueBook} />
+            <Route path="/dashboard/issue-return" component={IssueReturn} />
             <Route path="/dashboard/all-book" component={AllBook} />
             <Route path="/dashboard/add-new-book" component={AddNewBook} />
             <Route

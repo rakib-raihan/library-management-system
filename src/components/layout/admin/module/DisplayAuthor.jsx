@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { getAuthors } from "../../../../data/Author";
+import { getAuthors } from "../../../../services/authorServices";
 import CreateTable from "../../../../module/CreateTable";
 
 class DisplayAuthor extends Component {
   state = {
-    data: getAuthors(),
+    data: [],
     pageSize: 5,
     currentPage: 1,
   };
 
   columns = [
     { path: "name", label: "Name" },
-    { path: "books", label: "Books" },
+    { path: "about", label: "About" },
     {
       key: "delete",
       content: (author) => (
@@ -50,19 +50,32 @@ class DisplayAuthor extends Component {
     });
   };
 
+  // Database operation
+  async componentDidMount() {
+    const { data } = await getAuthors();
+
+    this.setState({
+      data,
+    });
+  }
+
   render() {
     const { data, currentPage, pageSize } = this.state;
     return (
       <React.Fragment>
-        <CreateTable
-          columns={this.columns}
-          data={data}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          handleDelete={this.handleDelete}
-          handleEdit={this.handleEdit}
-          handlePageChange={this.handlePageChange}
-        />
+        {data.length ? (
+          <CreateTable
+            columns={this.columns}
+            data={data}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            handleDelete={this.handleDelete}
+            handleEdit={this.handleEdit}
+            handlePageChange={this.handlePageChange}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
       </React.Fragment>
     );
   }

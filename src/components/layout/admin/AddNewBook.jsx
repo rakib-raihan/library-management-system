@@ -3,6 +3,9 @@ import CreateInputField from "../../../module/CreateInputField";
 import CreateSubmitButton from "../../../module/CreateSubmitButton";
 import PageTitle from "../../../module/PageTitle";
 import Select from "react-dropdown-select";
+import { getCategories } from "../../../services/categoryServices";
+import { getPublishers } from "../../../services/publisherServices";
+import { getAuthors } from "../../../services/authorServices";
 
 class AddNewBook extends Component {
   testData = [
@@ -14,6 +17,10 @@ class AddNewBook extends Component {
     { label: "Sweden", value: 46, key: 111111 },
     { label: "Venezuela", value: 58, key: 1111111 },
   ];
+
+  categories = [];
+  publishers = [];
+  authors = [];
 
   state = {
     data: {
@@ -79,16 +86,36 @@ class AddNewBook extends Component {
     this.resetFormData();
   };
 
+  // Database Operation
+  async componentDidMount() {
+    const { data: categories } = await getCategories();
+    categories.forEach((item) => {
+      this.categories.push({
+        label: item.name,
+        value: item._id,
+        key: item._id,
+      });
+    });
+    const { data: publishers } = await getPublishers();
+    publishers.forEach((item) => {
+      this.publishers.push({
+        label: item.name,
+        value: item._id,
+        key: item._id,
+      });
+    });
+    const { data: authors } = await getAuthors();
+    authors.forEach((item) => {
+      this.authors.push({
+        label: item.name,
+        value: item._id,
+        key: item._id,
+      });
+    });
+  }
+
   render() {
-    const {
-      title,
-      desc,
-      pages,
-      price,
-      author,
-      category,
-      publisher,
-    } = this.state.data;
+    const { title, desc, pages, price } = this.state.data;
     return (
       <React.Fragment>
         {PageTitle("Add New Book")}
@@ -129,11 +156,10 @@ class AddNewBook extends Component {
                   <div className="col form-group">
                     <label>Author</label>
                     <Select
-                      options={this.testData}
+                      options={this.authors}
                       onChange={this.handleAuthorSelection}
                       placeholder="Select Author"
                       className="form-control custom-input"
-                      labelField="label"
                       dropdownPosition="auto"
                     />
                   </div>
@@ -142,12 +168,10 @@ class AddNewBook extends Component {
                   <div className="col form-group">
                     <label>Category</label>
                     <Select
-                      options={this.testData}
+                      options={this.categories}
                       onChange={this.handleCategorySelection}
-                      name={this.testData.value}
                       placeholder="Select Category"
                       className="form-control custom-input"
-                      labelField="label"
                       dropdownPosition="auto"
                     />
                   </div>
@@ -156,12 +180,10 @@ class AddNewBook extends Component {
                   <div className="col form-group">
                     <label>Publisher</label>
                     <Select
-                      options={this.testData}
+                      options={this.publishers}
                       onChange={this.handlePublisherSelection}
-                      name={this.testData.value}
                       placeholder="Select Publisher"
                       className="form-control custom-input"
-                      labelField="label"
                       dropdownPosition="auto"
                     />
                   </div>

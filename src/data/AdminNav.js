@@ -13,6 +13,12 @@ export default () => {
       component: "IssueBook",
     },
     {
+      title: "Issue Return",
+      icon: "bx bx-check-square",
+      to: "/dashboard/issue-return",
+      component: "IssueReturn",
+    },
+    {
       header: "Book",
     },
     {

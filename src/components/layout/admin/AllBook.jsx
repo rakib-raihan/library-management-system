@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import CreateTable from "../../../module/CreateTable";
 import PageTitle from "../../../module/PageTitle";
-import { getBooks } from "../../../data/Book";
+import { toast } from "react-toastify";
+import { getBooks } from "../../../services/bookServices";
 
 class AllBook extends Component {
   columns = [
     { path: "title", label: "Title" },
-    { path: "author_id", label: "Author" },
-    { path: "publisher", label: "Publisher" },
-    { path: "avail_copy", label: "Available" },
-    { path: "price", label: "Price" },
+    { path: "data.author.name", label: "Author" },
+    { path: "data.publisher.name", label: "Publisher" },
+    { path: "data.category.name", label: "Category" },
+    { path: "pages", label: "Pages" },
     {
       key: "delete",
       content: (book) => (
@@ -35,7 +36,7 @@ class AllBook extends Component {
   ];
 
   state = {
-    data: getBooks(),
+    data: [],
     pageSize: 10,
     currentPage: 1,
   };
@@ -45,7 +46,7 @@ class AllBook extends Component {
   };
 
   handleEdit = (book) => {
-    console.log("Edit:", book);
+    toast("Sorry, this feature is not available at the moment!");
   };
 
   handlePageChange = (page) => {
@@ -54,23 +55,37 @@ class AllBook extends Component {
     });
   };
 
+  // Database operation
+  async componentDidMount() {
+    const { data } = await getBooks();
+
+    this.setState({
+      data,
+    });
+  }
+
   render() {
     const { data, pageSize, currentPage } = this.state;
+    console.log(this.props.books);
     return (
       <React.Fragment>
         {PageTitle("All Book")}
         <div className="page-content">
           <div className="row">
             <div className="col-md-12">
-              <CreateTable
-                columns={this.columns}
-                data={data}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                handleDelete={this.handleDelete}
-                handleEdit={this.handleEdit}
-                handlePageChange={this.handlePageChange}
-              />
+              {data.length ? (
+                <CreateTable
+                  columns={this.columns}
+                  data={data}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  handleDelete={this.handleDelete}
+                  handleEdit={this.handleEdit}
+                  handlePageChange={this.handlePageChange}
+                />
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
           </div>
         </div>

@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import CreateSubmitButton from "../../../../module/CreateSubmitButton";
 import CreateInputField from "../../../../module/CreateInputField";
 import SubTitle from "../../../../module/SubTitle";
+import { createCategory } from "../../../../services/categoryServices";
+import { toast } from "react-toastify";
 
 class CreateCategory extends Component {
   state = {
     data: {
-      title: "",
+      name: "",
     },
   };
 
@@ -18,22 +20,25 @@ class CreateCategory extends Component {
     });
   };
 
-  handleFormSubmit = (e) => {
+  handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.data);
-    this.resetFormData();
+    const { data } = await createCategory(this.state.data);
+    if (data) {
+      toast.success(`Category "${data.name}" created successfully!`);
+      this.resetFormData();
+    }
   };
 
   resetFormData = () => {
     this.setState({
       data: {
-        title: "",
+        name: "",
       },
     });
   };
 
   render() {
-    const { title } = this.state.data;
+    const { name } = this.state.data;
     return (
       <div className="card create-category-form">
         <div className="card-header">{SubTitle("Add New Category")}</div>
@@ -42,9 +47,9 @@ class CreateCategory extends Component {
             <CreateInputField
               label="Categoty Name"
               type="text"
-              id="title"
+              id="name"
               autoFocus
-              value={title}
+              value={name}
               onChange={this.handleInputChange}
             />
             <CreateSubmitButton

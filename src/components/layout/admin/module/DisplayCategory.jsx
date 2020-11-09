@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { getCategories } from "../../../../data/Category";
+import { getCategories } from "../../../../services/categoryServices";
 import CreateTable from "../../../../module/CreateTable";
 
 class DisplayCategory extends Component {
   state = {
-    data: getCategories(),
+    data: [],
     pageSize: 5,
     currentPage: 1,
   };
 
   columns = [
-    { path: "title", label: "Title" },
-    { path: "books", label: "Books" },
+    { path: "name", label: "Name" },
     {
       key: "delete",
       content: (cat) => (
@@ -50,19 +49,32 @@ class DisplayCategory extends Component {
     });
   };
 
+  // DB Operation
+  async componentDidMount() {
+    const { data } = await getCategories();
+
+    this.setState({
+      data,
+    });
+  }
+
   render() {
     const { data, currentPage, pageSize } = this.state;
     return (
       <React.Fragment>
-        <CreateTable
-          columns={this.columns}
-          data={data}
-          pageSize={pageSize}
-          currentPage={currentPage}
-          handleDelete={this.handleDelete}
-          handleEdit={this.handleEdit}
-          handlePageChange={this.handlePageChange}
-        />
+        {data.length ? (
+          <CreateTable
+            columns={this.columns}
+            data={data}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            handleDelete={this.handleDelete}
+            handleEdit={this.handleEdit}
+            handlePageChange={this.handlePageChange}
+          />
+        ) : (
+          <p>Loading...</p>
+        )}
       </React.Fragment>
     );
   }

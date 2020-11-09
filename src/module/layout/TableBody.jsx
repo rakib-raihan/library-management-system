@@ -14,7 +14,7 @@ class TableBody extends Component {
       <React.Fragment>
         <tbody>
           {data.map((item) => (
-            <tr key={item.id}>
+            <tr key={item._id}>
               {columns.map((column) => (
                 <td key={item.id + column.path || column.key}>
                   {this.renderCell(item, column)}

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { getCustomer } from "../../../data/Customer";
 import CreateTable from "../../../module/CreateTable";
 import PageTitle from "../../../module/PageTitle";
+import { getCustomers } from "../../../services/customerServices";
 
 class AllCustomer extends Component {
   columns = [
-    { path: "first_name", label: "First Name" },
-    { path: "last_name", label: "Last Name" },
+    { path: "name", label: "Name" },
     { path: "email", label: "Email" },
+    { path: "phone", label: "Phone" },
     {
       key: "delete",
       content: (customer) => (
@@ -33,7 +33,7 @@ class AllCustomer extends Component {
   ];
 
   state = {
-    data: getCustomer(),
+    data: [],
     pageSize: 10,
     currentPage: 1,
   };
@@ -52,6 +52,15 @@ class AllCustomer extends Component {
     });
   };
 
+  // Database operation
+  async componentDidMount() {
+    const { data } = await getCustomers();
+
+    this.setState({
+      data,
+    });
+  }
+
   render() {
     const { data, pageSize, currentPage } = this.state;
     return (
@@ -60,15 +69,19 @@ class AllCustomer extends Component {
         <div className="page-content">
           <div className="row">
             <div className="col-md-12">
-              <CreateTable
-                columns={this.columns}
-                data={data}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                handleDelete={this.handleDelete}
-                handleEdit={this.handleEdit}
-                handlePageChange={this.handlePageChange}
-              />
+              {data.length ? (
+                <CreateTable
+                  columns={this.columns}
+                  data={data}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  handleDelete={this.handleDelete}
+                  handleEdit={this.handleEdit}
+                  handlePageChange={this.handlePageChange}
+                />
+              ) : (
+                <p>Loading...</p>
+              )}
             </div>
           </div>
         </div>
